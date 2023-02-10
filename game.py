@@ -132,15 +132,21 @@ won_games2 = 0
 
 while True:
     start_or_end_command = input()
-    if start_or_end_command == "Exit":
+    if start_or_end_command.lower() == "Exit":
         print("\nHave a nice day!")
         exit()
-    elif start_or_end_command != "Start":
+    elif start_or_end_command.lower() != "Start":
         print("Invalid command!")
         continue
     else:
         print("Welcome to my game!\n")
         break
+
+
+def show_results(won_games1, won_games2):
+    print(f"\nPlayer 1 has {won_games1} won games")
+    print(f"Player 2 has {won_games2} won games\n")
+
 
 while won_games1 < 5 and won_games2 < 5:
     choice1 = input("Player 1, choose a column\n")
@@ -165,10 +171,11 @@ while won_games1 < 5 and won_games2 < 5:
     if winner1:
         winner1 = False
         won_games1 += 1
+        show_results(won_games1, won_games2)
         matrix = reset_matrix()
         continue
 
-    choice2 = input("Player 1, choose a column\n")
+    choice2 = input("Player 2, choose a column\n")
     if choice2 == "Exit":
         print("Have a nice day!")
         exit()
@@ -192,4 +199,5 @@ while won_games1 < 5 and won_games2 < 5:
     if winner2:
         winner2 = False
         won_games2 += 1
+        show_results(won_games1, won_games2)
         matrix = reset_matrix()
